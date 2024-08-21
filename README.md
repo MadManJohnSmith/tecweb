@@ -12,4 +12,4 @@
 
 El objetivo principal de esta actividad es instalar Apache y usar su directorio público, para crear un repositorio local que te sirva para almacenar y entregar todos tus practicas y proyectos del curso. Asi mismo crear un "repositorio central" (remoto) en GitHub de nombre "tecweb".
 
-![img]()
+![img](/download.jpeg)
