@@ -117,25 +117,47 @@ usando la función var_dump(<datos>).
     $e = ($a and $c);
     $f = ($a XOR $b);
 
-    var_dump($a); echo '<br>';
-    var_dump($b); echo '<br>';
-    var_dump($c); echo '<br>';
-    var_dump($d); echo '<br>';
-    var_dump($e); echo '<br>';
-    var_dump($f); echo '<br>';
+    var_dump($a);
+    echo '<br>';
+    var_dump($b);
+    echo '<br>';
+    var_dump($c);
+    echo '<br>';
+    var_dump($d);
+    echo '<br>';
+    var_dump($e);
+    echo '<br>';
+    var_dump($f);
+    echo '<br>';
 
     echo '<p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
 en uno que se pueda mostrar con un echo:
  <p/>';
-    echo (bool) $a ? 'true' : 'false'; echo '<br>';
-    echo (bool) $b ? 'true' : 'false'; echo '<br>';
-    echo (bool) $c ? 'true' : 'false'; echo '<br>';
-    echo (bool) $d ? 'true' : 'false'; echo '<br>';
-    echo (bool) $e ? 'true' : 'false'; echo '<br>';
-    echo (bool) $f ? 'true' : 'false'; echo '<br>';
+    echo (bool) $a ? 'true' : 'false';
+    echo '<br>';
+    echo (bool) $b ? 'true' : 'false';
+    echo '<br>';
+    echo (bool) $c ? 'true' : 'false';
+    echo '<br>';
+    echo (bool) $d ? 'true' : 'false';
+    echo '<br>';
+    echo (bool) $e ? 'true' : 'false';
+    echo '<br>';
+    echo (bool) $f ? 'true' : 'false';
+    echo '<br>';
 
     echo '<br><h4><p>7. Usando la variable predefinida $_SERVER, determina lo siguiente:
  <p/></h4>';
+    echo '<p>a. La versión de Apache y PHP,
+ <p/>';
+    echo $_SERVER['SERVER_SOFTWARE'];
+
+    echo '<p> b. El nombre del sistema operativo (servidor),
+ <p/>';
+ echo PHP_OS;
+    echo '<p>c. El idioma del navegador (cliente).
+ <p/>';
+    echo $_SERVER['HTTP_ACCEPT_LANGUAGE'];
     ?>
 </body>
 
