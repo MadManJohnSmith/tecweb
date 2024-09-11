@@ -98,7 +98,43 @@ la matriz $GLOBALS o del modificador global de PHP.
     mostrar();
 
     echo '<br><h4><p>5. Dar el valor de las variables $a, $b, $c al final del siguiente script:
+ <p/></h4>';
+    $a = "7 personas";
+    $b = (integer) $a;
+    $a = "9E3";
+    $c = (double) $a;
+    echo $a . '<br>';
+    echo $b . '<br>';
+    echo $c . '<br>';
 
+    echo '<br><h4><p>6. Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas
+usando la función var_dump(<datos>).
+ <p/></h4>';
+    $a = "  0";
+    $b = "TRUE";
+    $c = FALSE;
+    $d = ($a or $b);
+    $e = ($a and $c);
+    $f = ($a XOR $b);
+
+    var_dump($a); echo '<br>';
+    var_dump($b); echo '<br>';
+    var_dump($c); echo '<br>';
+    var_dump($d); echo '<br>';
+    var_dump($e); echo '<br>';
+    var_dump($f); echo '<br>';
+
+    echo '<p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e
+en uno que se pueda mostrar con un echo:
+ <p/>';
+    echo (bool) $a ? 'true' : 'false'; echo '<br>';
+    echo (bool) $b ? 'true' : 'false'; echo '<br>';
+    echo (bool) $c ? 'true' : 'false'; echo '<br>';
+    echo (bool) $d ? 'true' : 'false'; echo '<br>';
+    echo (bool) $e ? 'true' : 'false'; echo '<br>';
+    echo (bool) $f ? 'true' : 'false'; echo '<br>';
+
+    echo '<br><h4><p>7. Usando la variable predefinida $_SERVER, determina lo siguiente:
  <p/></h4>';
     ?>
 </body>
