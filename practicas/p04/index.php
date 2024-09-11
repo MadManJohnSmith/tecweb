@@ -29,6 +29,26 @@
         echo '<li>$_element1 es válida porque inicia con guión bajo.</li>';
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
+        $a = "ManejadorSQL";
+$b = 'MySQL';
+$c = &$a;
+
+echo $a.'<br>';
+echo $b.'<br>';
+echo $c.'<br>';
+
+echo '<br>';
+
+$a = "PHP server";
+$b = &$a;
+
+echo $a.'<br>';
+echo $b.'<br>';
+
+
+echo '<p>Respuesta: Asignamos otro valor a la varible 
+	$a y despues le asignamos a $b el valor de la 
+	variable $a por referncia </p>';
     ?>
 </body>
 </html>
