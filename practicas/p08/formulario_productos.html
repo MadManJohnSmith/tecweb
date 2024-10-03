@@ -9,7 +9,7 @@
   <form action=""></form>
     <h1>Ingresar nuevo Producto</h1>
 
-    <form id="formulario_productos" action="http://localhost/tecweb/practicas/p08/set_producto_v2.php" method="post">
+    <form id="formulario_productos" action="http://localhost:8080/tecweb/practicas/p08/set_producto_v2.php" method="post" enctype="multipart/form-data">
 
     <h2>Datos del Producto</h2>
 
@@ -22,10 +22,10 @@
           <li><label for="form-price">Precio</label> <input type="number" name="precio" id="form-price"></li>
           <li><label for="form-details">Detalles:</label> <input type="text" name="detalles" id="form-details"></li>
           <li><label for="form-units">Unidades:</label> <input type="number" name="unidades" id="form-units"></li>
-          <li><label for="form-img">Imagen:</label> <input type="image" name="imagen" id="form-img"></li>
+          <li><label for="form-img">Imagen:</label> <input type="file" name="imagen" id="form-img" accept="image/png, image/jpeg"></li>
         </ul>
-        
       </fieldset>
+      <input type="submit" id="submit" value="Ingresar a BD">
     </form>
 </body>
 </html>
