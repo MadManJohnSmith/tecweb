@@ -40,25 +40,26 @@ if ($result->num_rows > 0) {
     echo "<br/>Error: Ya existe un producto con el mismo nombre, marca y modelo.";
 } else {
     /** Crear una tabla que no devuelve un conjunto de resultados */
-    $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen, eliminado) 
-        VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$ruta_rel}', 0)";
-        if ($link->query($sql)) {
-            echo '<br/>Producto insertado con ID: ' . $link->insert_id;
-            echo "<br/>Nombre: {$nombre}<br/>";
-            echo "Marca: {$marca}<br/>";
-            echo "Modelo: {$modelo}<br/>";
-            echo "Precio: {$precio}<br/>";
-            echo "Detalles: {$detalles}<br/>";
-            echo "Unidades: {$unidades}<br/>";
-            $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
-            $nombre_imagen = "{$modelo}.{$extension}";
-            // Mostrar la imagen con el estilo especificado
-            echo "Imagen: <br/><img src='http://localhost:8080/tecweb/practicas/p07/img/{$nombre_imagen}' style='max-width: 31.25rem;' />";
-        
-        
-        } else {
-            echo 'El Producto no pudo ser insertado =(';
-        }
+    //$sql = "INSERT INTO productos VALUES (null, '{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$ruta_rel}', 0)";
+    $sql = "INSERT INTO productos (nombre, marca, modelo, precio, detalles, unidades, imagen) 
+        VALUES ('{$nombre}', '{$marca}', '{$modelo}', {$precio}, '{$detalles}', {$unidades}, '{$ruta_rel}')";
+    if ($link->query($sql)) {
+        echo '<br/>Producto insertado con ID: ' . $link->insert_id;
+        echo "<br/>Nombre: {$nombre}<br/>";
+        echo "Marca: {$marca}<br/>";
+        echo "Modelo: {$modelo}<br/>";
+        echo "Precio: {$precio}<br/>";
+        echo "Detalles: {$detalles}<br/>";
+        echo "Unidades: {$unidades}<br/>";
+        $extension = pathinfo($_FILES['imagen']['name'], PATHINFO_EXTENSION);
+        $nombre_imagen = "{$modelo}.{$extension}";
+        // Mostrar la imagen con el estilo especificado
+        echo "Imagen: <br/><img src='http://localhost:8080/tecweb/practicas/p07/img/{$nombre_imagen}' style='max-width: 31.25rem;' />";
+
+
+    } else {
+        echo 'El Producto no pudo ser insertado =(';
+    }
 }
 
 $link->close();
