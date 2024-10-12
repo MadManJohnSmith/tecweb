@@ -70,3 +70,30 @@ function defImg(imgPath) {
     const defaultPath = "img/default.jpeg";
     return imgPath && imgPath.trim() !== "" ? imgPath : defaultPath;
 }
+function validarMarca(x, y) {
+    const element = document.getElementById(x);
+    const elError = document.getElementById(y);
+
+    if (element.value === "Def") {
+        elError.removeAttribute("hidden");
+        elError.innerHTML = "Debe seleccionar una marca.";
+        return false;
+    }
+    elError.setAttribute("hidden", true);
+    return true;
+}
+
+function validarFormulario() {
+    let esValido = true;
+    esValido = validarNombre('form-name', 'error-nombre', 100) && esValido;
+    esValido = validarModelo('form-model', 'error-modelo', 25) && esValido;
+    esValido = validarPrecio('form-price', 'error-precio', 99.99) && esValido;
+    esValido = validarUnidades('form-units', 'error-unidades', 0) && esValido;
+    esValido = validarMarca('marca1', 'error-marca') && esValido;
+    const formImg = document.getElementById('form-img');
+    const hiddenImg = document.getElementById('imagen_predeterminada');
+    if (!formImg.value) {
+        hiddenImg.value = defImg("");
+    }
+    return esValido;
+}
