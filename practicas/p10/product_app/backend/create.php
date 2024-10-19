@@ -13,4 +13,3 @@
          */
         echo '[SERVIDOR] Nombre: '.$jsonOBJ->nombre;
     }
-?>
