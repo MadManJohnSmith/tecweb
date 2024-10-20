@@ -1,4 +1,5 @@
 // JSON BASE A MOSTRAR EN FORMULARIO
+
 var baseJSON = {
 	precio: 0.0,
 	unidades: 1,
@@ -25,10 +26,12 @@ function buscarProducto(e) {
 				productos.forEach((producto) => {
 					let descripcion = "";
 					descripcion += "<li>precio: " + producto.precio + "</li>";
-					descripcion += "<li>unidades: " + producto.unidades + "</li>";
+					descripcion +=
+						"<li>unidades: " + producto.unidades + "</li>";
 					descripcion += "<li>modelo: " + producto.modelo + "</li>";
 					descripcion += "<li>marca: " + producto.marca + "</li>";
-					descripcion += "<li>detalles: " + producto.detalles + "</li>";
+					descripcion +=
+						"<li>detalles: " + producto.detalles + "</li>";
 					template += `
                         <tr>
                             <td>${producto.id}</td>
@@ -109,6 +112,10 @@ function agregarProducto(e) {
 	// SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
 	finalJSON["nombre"] = document.getElementById("name").value;
 
+	if (!validarJSON(finalJSON)) {
+		return;
+	}
+
 	// SE OBTIENE EL STRING DEL JSON FINAL
 	productoJsonString = JSON.stringify(finalJSON, null, 2);
 
@@ -119,7 +126,12 @@ function agregarProducto(e) {
 	client.onreadystatechange = function () {
 		// SE VALIDARICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
 		if (client.readyState == 4 && client.status == 200) {
-			console.log(client.responseText);
+			const response = JSON.parse(client.responseText);
+			if (response.status === "success") {
+				alert("Producto agregado correctamente.");
+			} else {
+				alert("Error: " + response.message);
+			}
 		}
 	};
 	client.send(productoJsonString);
@@ -158,4 +170,91 @@ function init() {
 	 */
 	var JsonString = JSON.stringify(baseJSON, null, 2);
 	document.getElementById("description").value = JsonString;
+}
+
+function validarNombre() {
+    var nombre = document.getElementById("name").value.trim();
+    if (nombre.length === 0) {
+        alert("Ingresa un nombre.");
+        return false;
+    } else if (nombre.length > 100) {
+        alert("¿Para que el nombre tan largo?");
+        return false;
+    }
+    return true;
+}
+function validarMarca(json) {
+    var marca = json.marca.trim();
+    let marcas = ["Cisco", "D-Link", "Linksys", "Netgear", "TP-Link"];
+    if (marca.length === 0) {
+        alert("Ingresa una marca.");
+        return false;
+    } else if (!marcas.includes(marca)) {
+        alert("La marca no esta en la lista: 'Cisco', 'D-Link', 'Linksys', 'Netgear', 'TP-Link'.");
+        return false;
+    }
+    return true;
+}
+function validarModelo(json) {
+    var modelo = json.modelo.trim();
+    if (modelo.length === 0) {
+        alert("Se te olvido el modelo.");
+        return false;
+    } else if (!/^[A-Za-z0-9 ]+$/.test(modelo)) {
+        alert("Se ingreso un caracter invalido.");
+        return false;
+    } else if (modelo.length > 25) {
+        alert("Modelo excede el limite de 25 caracteres.");
+        return false;
+    }
+    return true;
+}
+function validarPrecio(json) {
+    var precio = json.precio;
+    var aux = parseFloat(precio);
+    if (precio.length === 0) {
+        alert("Ingresa un precio.");
+        return false;
+    } else if (isNaN(aux) || aux < 99.99) {
+        alert("El precio debe ser mayor a $99.99.");
+        return false;
+    }
+    return true;
+}
+function validarDetalles(json) {
+    var detalles = json.detalles.trim();
+    if (detalles.length > 250) {
+        alert("Mucho texto en detalles el limite es de 250 caracteres.");
+        return false;
+    }
+    return true;
+}
+function validarUnidades(json) {
+    var unidades = json.unidades;
+    var aux = parseInt(unidades);
+    if (unidades.length === 0) {
+        alert("¿Cuantas unidades ingreso, joven?");
+        return false;
+    } else if (isNaN(aux) || aux < 1) {
+        alert("El numero de unidades debe ser mayor a 0.");
+        return false;
+    }
+    return true;
+}
+//Ya hay imagen default en el frontend
+function validarJSON(json) {
+	const validaciones = [
+		validarNombre,
+		validarMarca,
+		validarModelo,
+		validarPrecio,
+		validarDetalles,
+		validarUnidades,
+	];
+	for (let validar of validaciones) {
+		if (!validar(json)) {
+			return false;
+		}
+	}
+	return true;
 }
