@@ -1,4 +1,5 @@
 $(document).ready(function () {
+	let edit = false;
 	console.log("JQuery cargado");
 	$("#product-result").hide();
 
@@ -59,65 +60,75 @@ $(document).ready(function () {
 	});
 });
 $("#product-form").submit(function agregarProducto(e) {
-    e.preventDefault();
+	e.preventDefault();
 
-    // Se obtienen los valores del formulario
-    const nombreProducto = $("#name").val();
-    const descripcion = JSON.parse($("#description").val());
+	// Se obtienen los valores del formulario
+	const nombreProducto = $("#name").val();
+	const descripcion = JSON.parse($("#description").val());
 
-    // Se prepara el objeto para enviar en el formato correcto
-    const postData = {
-        nombre: nombreProducto,   // Cambia 'name' a 'nombre' para coincidir con el PHP
-        marca: descripcion.marca,
-        modelo: descripcion.modelo,
-        precio: descripcion.precio,
-        detalles: descripcion.detalles,
-        unidades: descripcion.unidades,
-        imagen: descripcion.imagen,
-    };
+	// Se prepara el objeto para enviar en el formato correcto
+	const postData = {
+		nombre: nombreProducto, // Cambia 'name' a 'nombre' para coincidir con el PHP
+		marca: descripcion.marca,
+		modelo: descripcion.modelo,
+		precio: descripcion.precio,
+		detalles: descripcion.detalles,
+		unidades: descripcion.unidades,
+		imagen: descripcion.imagen,
+	};
 
-    // Se envían los datos al servidor
-    $.post("./backend/product-add.php", JSON.stringify(postData), function (response) {
-        // Se procesa la respuesta
-        let template_bar = '';
-        template_bar += `
+	// Se envían los datos al servidor
+	$.post(
+		"./backend/product-add.php",
+		JSON.stringify(postData),
+		function (response) {
+			// Se procesa la respuesta
+			let template_bar = "";
+			template_bar += `
             <li style="list-style: none;">status: ${response.status}</li>
             <li style="list-style: none;">message: ${response.message}</li>
         `;
 
-        // Se hace visible la barra de estado
-        $("#product-result").addClass("card my-4 d-block").show();
-        $("#container").html(template_bar);
+			// Se hace visible la barra de estado
+			$("#product-result").addClass("card my-4 d-block").show();
+			$("#container").html(template_bar);
 
-        // Se listan los productos nuevamente
-        listarProductos();
-        // Se reinicia el formulario
-        $("#product-form").trigger("reset");
-        $("#description").val(JSON.stringify(baseJSON, null, 2));
-    }, 'json'); // Asegúrate de que la respuesta sea interpretada como JSON
+			// Se listan los productos nuevamente
+			listarProductos();
+			// Se reinicia el formulario
+			$("#product-form").trigger("reset");
+			$("#description").val(JSON.stringify(baseJSON, null, 2));
+		},
+		"json"
+	); // Asegúrate de que la respuesta sea interpretada como JSON
 });
 $(document).on("click", ".product-delete", function () {
-    if (confirm("¿Estás seguro de eliminar este producto?")) {
-        let element = $(this)[0].parentElement.parentElement;
-        let id = $(element).attr("productId");
+	if (confirm("¿Estás seguro de eliminar este producto?")) {
+		let element = $(this)[0].parentElement.parentElement;
+		let id = $(element).attr("productId");
 
-        // Cambiamos a $.get para enviar el ID a través de la URL
-        $.get("./backend/product-delete.php", { id }, function (response) {
-            // Se procesa la respuesta
-            let template_bar = '';
-            template_bar += `
+		// Cambiamos a $.get para enviar el ID a través de la URL
+		$.get(
+			"./backend/product-delete.php",
+			{ id },
+			function (response) {
+				// Se procesa la respuesta
+				let template_bar = "";
+				template_bar += `
                 <li style="list-style: none;">status: ${response.status}</li>
                 <li style="list-style: none;">message: ${response.message}</li>
             `;
 
-            // Se hace visible la barra de estado
-            $("#product-result").addClass("card my-4 d-block").show();
-            $("#container").html(template_bar);
+				// Se hace visible la barra de estado
+				$("#product-result").addClass("card my-4 d-block").show();
+				$("#container").html(template_bar);
 
-            // Se listan los productos nuevamente
-            listarProductos();
-        }, 'json'); // Asegúrate de que la respuesta sea interpretada como JSON
-    }
+				// Se listan los productos nuevamente
+				listarProductos();
+			},
+			"json"
+		); // Asegúrate de que la respuesta sea interpretada como JSON
+	}
 });
 
 function listarProductos() {
@@ -142,7 +153,7 @@ function listarProductos() {
 				template += `
                         <tr productId="${producto.id}">
                             <td>${producto.id}</td>
-                            <td>${producto.nombre}</td>
+                            <td><a href="#" class="product-item">${producto.nombre}</a></td>
                             <td><ul>${descripcion}</ul></td>
                             <td>
                                 <button class="product-delete btn btn-danger">
@@ -156,6 +167,18 @@ function listarProductos() {
 		},
 	});
 }
+$(document).on("click", ".task-item", (e) => {
+	const element = $(this)[0].activeElement.parentElement.parentElement;
+	const id = $(element).attr("taskId");
+	$.post("task-single.php", { id }, (response) => {
+		const task = JSON.parse(response);
+		$("#name").val(task.name);
+		$("#description").val(task.description);
+		$("#taskId").val(task.id);
+		edit = true;
+	});
+	e.preventDefault();
+});
 
 // JSON BASE A MOSTRAR EN FORMULARIO
 var baseJSON = {
