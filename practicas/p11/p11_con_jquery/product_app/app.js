@@ -96,6 +96,29 @@ $("#product-form").submit(function agregarProducto(e) {
         $("#description").val(JSON.stringify(baseJSON, null, 2));
     }, 'json'); // Asegúrate de que la respuesta sea interpretada como JSON
 });
+$(document).on("click", ".product-delete", function () {
+    if (confirm("¿Estás seguro de eliminar este producto?")) {
+        let element = $(this)[0].parentElement.parentElement;
+        let id = $(element).attr("productId");
+
+        // Cambiamos a $.get para enviar el ID a través de la URL
+        $.get("./backend/product-delete.php", { id }, function (response) {
+            // Se procesa la respuesta
+            let template_bar = '';
+            template_bar += `
+                <li style="list-style: none;">status: ${response.status}</li>
+                <li style="list-style: none;">message: ${response.message}</li>
+            `;
+
+            // Se hace visible la barra de estado
+            $("#product-result").addClass("card my-4 d-block").show();
+            $("#container").html(template_bar);
+
+            // Se listan los productos nuevamente
+            listarProductos();
+        }, 'json'); // Asegúrate de que la respuesta sea interpretada como JSON
+    }
+});
 
 function listarProductos() {
 	$.ajax({
