@@ -86,7 +86,7 @@ function buscarProducto(e) {
 
     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
     var client = getXMLHttpRequest();
-    client.open('GET', './backend/product-search.php?search='+search, true);
+    client.open('POST', './backend/product-search.php?search='+search, true);
     client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     client.onreadystatechange = function () {
         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA

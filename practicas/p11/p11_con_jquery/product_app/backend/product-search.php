@@ -4,8 +4,8 @@
     // SE CREA EL ARREGLO QUE SE VA A DEVOLVER EN FORMA DE JSON
     $data = array();
     // SE VERIFICA HABER RECIBIDO EL ID
-    if( isset($_GET['search']) ) {
-        $search = $_GET['search'];
+    if( isset($_POST['search']) ) {
+        $search = $_POST['search'];
         // SE REALIZA LA QUERY DE BÚSQUEDA Y AL MISMO TIEMPO SE VALIDA SI HUBO RESULTADOS
         $sql = "SELECT * FROM productos WHERE (id = '{$search}' OR nombre LIKE '%{$search}%' OR marca LIKE '%{$search}%' OR detalles LIKE '%{$search}%') AND eliminado = 0";
         if ( $result = $conexion->query($sql) ) {
