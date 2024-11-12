@@ -61,6 +61,7 @@ $(document).ready(function () {
 		}
 	});
 });
+
 $("#product-form").submit(function agregarProducto(e) {
 	e.preventDefault();
 
@@ -103,6 +104,7 @@ $("#product-form").submit(function agregarProducto(e) {
 		"json"
 	);
 });
+
 $(document).on("click", ".product-delete", function () {
 	if (confirm("¿Estás seguro de eliminar este producto?")) {
 		let element = $(this)[0].parentElement.parentElement;
