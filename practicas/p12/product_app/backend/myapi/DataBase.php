@@ -4,7 +4,7 @@ namespace TECWEB\MYAPI;
 abstract class DataBase {
     protected $conexion;
 
-    public function __construct($db, $user, $pass) {
+    public function __construct($db='marketzone', $user='root', $pass='1234') {
         $this->conexion = @mysqli_connect(
             'localhost',
             $user,

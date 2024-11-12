@@ -157,4 +157,3 @@ class Products extends DataBase {
 }
 
 //$productos = new Productos();
-?>
