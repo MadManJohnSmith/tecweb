@@ -1,0 +1,19 @@
+<!DOCTYPE cinefanatico SYSTEM "cinefanatico.dtd">
+<cinefanatico>
+    <tarjeta noserie="12345" visitas="10" puntos="100">
+        <nombre>Juan Perez</nombre>
+        <correo>juan.perez@example.com</correo>
+        <telefono tipo="movil">1234567890</telefono>
+    </tarjeta>
+    <tarjeta noserie="67890" visitas="5" puntos="50">
+        <nombre>Maria Lopez</nombre>
+        <correo>maria.lopez@example.com</correo>
+        <telefono tipo="casa">0987654321</telefono>
+        <telefono tipo="movil">1122334455</telefono>
+    </tarjeta>
+    <tarjeta noserie="54321" visitas="20" puntos="200">
+        <nombre>Carlos Sanchez</nombre>
+        <correo>carlos.sanchez@example.com</correo>
+        <telefono tipo="casa">2233445566</telefono>
+    </tarjeta>
+</cinefanatico>

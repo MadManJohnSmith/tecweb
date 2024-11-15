@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE CatalogoVOD SYSTEM "serviciovod.dtd">
+<CatalogoVOD>
+    <cuenta correo="usuario1@example.com">
+        <perfiles>
+            <perfil usuario="Usuario1" idioma="Español"/>
+            <perfil usuario="Usuario2" idioma="Inglés"/>
+        </perfiles>
+    </cuenta>
+    <contenido>
+        <peliculas>
+            <genero nombre="Acción">
+                <titulo nombre="Película 1" duracion="120 min"/>
+                <titulo nombre="Película 2" duracion="130 min"/>
+                <titulo nombre="Película 3" duracion="110 min"/>
+                <titulo nombre="Película 4" duracion="140 min"/>
+            </genero>
+            <genero nombre="Comedia">
+                <titulo nombre="Película 5" duracion="90 min"/>
+                <titulo nombre="Película 6" duracion="100 min"/>
+                <titulo nombre="Película 7" duracion="95 min"/>
+                <titulo nombre="Película 8" duracion="105 min"/>
+            </genero>
+        </peliculas>
+        <programas>
+            <genero nombre="Documental">
+                <titulo nombre="Programa 1" duracion="60 min"/>
+                <titulo nombre="Programa 2" duracion="70 min"/>
+                <titulo nombre="Programa 3" duracion="50 min"/>
+                <titulo nombre="Programa 4" duracion="80 min"/>
+            </genero>
+            <genero nombre="Infantil">
+                <titulo nombre="Programa 5" duracion="30 min"/>
+                <titulo nombre="Programa 6" duracion="40 min"/>
+                <titulo nombre="Programa 7" duracion="35 min"/>
+                <titulo nombre="Programa 8" duracion="45 min"/>
+            </genero>
+        </programas>
+    </contenido>
+</CatalogoVOD>

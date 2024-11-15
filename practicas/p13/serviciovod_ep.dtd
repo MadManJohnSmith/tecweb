@@ -1,0 +1,17 @@
+<!ELEMENT CatalogoVOD (cuenta, contenido)>
+<!ELEMENT cuenta (perfiles)>
+<!ATTLIST cuenta correo CDATA #REQUIRED>
+<!ELEMENT perfiles (perfil+)>
+<!ELEMENT perfil EMPTY>
+<!ATTLIST perfil usuario CDATA #REQUIRED
+                 idioma CDATA #REQUIRED>
+<!ELEMENT contenido (peliculas, series)>
+<!ELEMENT peliculas (genero+)>
+<!ATTLIST peliculas region (MEX|USA|ESP|ARG|KOR) #REQUIRED>
+<!ELEMENT series (genero+)>
+<!ATTLIST series region (MEX|USA|ESP|ARG|KOR) #REQUIRED>
+<!ELEMENT genero (titulo+)>
+<!ATTLIST genero nombre CDATA #REQUIRED>
+<!ELEMENT titulo EMPTY>
+<!ATTLIST titulo nombre CDATA #REQUIRED
+                 duracion CDATA #REQUIRED>
