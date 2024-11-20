@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:complexType name="cuentaType">
+        <xs:sequence>
+            <xs:element name="Nombre" type="xs:string" />
+            <xs:element name="Correo" type="xs:string" />
+            <xs:element name="Telefono">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="tipo" type="xs:string" use="required" />
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="id" type="xs:integer" />
+        <xs:attribute name="plan" type="xs:string" />
+        <xs:attribute name="fechaIni" type="xs:date" />
+        <xs:attribute name="fechaFin" type="xs:date" />
+    </xs:complexType>
+    <xs:complexType name="spotifyType">
+        <xs:sequence>
+            <xs:element name="Cuenta" type="cuentaType" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="version" type="xs:string" />
+    </xs:complexType>
+
+    <xs:element name="Spotify" type="spotifyType" />
+</xs:schema>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tw:Spotify xmlns:tw="http://tecnologiasweb.com.mx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://tecnologiasweb.com.mx spotify_ns.xsd"
+    version="1.0">
+    <tw:Cuenta id="1" plan="Premium" fechaIni="2023-01-01" fechaFin="2023-12-31">
+        <tw:Nombre>JUAN CARLOS</tw:Nombre>
+        <tw:Correo>carlos.conder@correo.buap.mx</tw:Correo>
+        <tw:Telefono tipo="movil">222-0-11-22-33</tw:Telefono>
+    </tw:Cuenta>
+    <tw:Cuenta id="2" plan="Premium" fechaIni="2023-06-01" fechaFin="2023-12-31">
+        <tw:Nombre>John Smith</tw:Nombre>
+        <tw:Correo>john.smith@correo.buap.com</tw:Correo>
+        <tw:Telefono tipo="movil">222-0-11-22-33</tw:Telefono>
+    </tw:Cuenta>
+</tw:Spotify>
